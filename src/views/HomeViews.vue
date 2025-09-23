@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
+import { getAuth, signOut } from "firebase/auth"
+import { useRouter } from "vue-router"
 
 const formData = ref({
   username: '',
@@ -14,6 +16,8 @@ const formData = ref({
 })
 
 const submittedCards = ref([])
+
+const router = useRouter()
 
 const submitForm = () => {
   validateName(true)
@@ -82,6 +86,16 @@ const validateConfirmPassword = (blur) => {
   } else {
     errors.value.confirmPassword = null
   }
+}
+
+const logout = () => {
+   const auth = getAuth()
+   signOut(auth).then(() => {
+     console.log("User signed out")
+     console.log("Current user after sign out:", auth.currentUser) 
+     localStorage.removeItem('role') 
+     router.push("/FireLogin")
+   })
 }
 </script>
 
@@ -167,6 +181,9 @@ const validateConfirmPassword = (blur) => {
           <div class="mb-3">
             <label for="reason" class="form-label">Suburb</label>
             <input type="text" class="form-control" id="suburb" v-bind:value="formData.suburb" />
+          </div>
+          <div class="text-end m-3">
+            <button class="btn btn-danger" @click="logout">Log out</button>
           </div>
           <div class="text-center">
             <button type="submit" class="btn btn-primary me-2">Submit</button>

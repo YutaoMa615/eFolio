@@ -17,8 +17,17 @@ const signin = () => {
   signInWithEmailAndPassword(auth, email.value, password.value)
     .then((data) => {
       console.log("Firebase Sign in Successful!")
-      router.push("/Homeviews")
       console.log(auth.currentUser) // To check the current User signed in
+
+      const uidKey = `role_uid_${data.user.uid}`
+      const emailKey = `role_${data.user.email}`
+      let role = localStorage.getItem(uidKey)
+      if (!role) role = localStorage.getItem(emailKey)
+      if (!role) role = 'user' 
+      localStorage.setItem('role', role)
+      console.log("User role:", role, "(from", (localStorage.getItem(uidKey) ? uidKey : (localStorage.getItem(emailKey) ? emailKey : 'default')), ")")
+
+      router.push("/Homeviews")
     })
     .catch((error) => {
       console.log(error.code)

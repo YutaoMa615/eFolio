@@ -13,12 +13,16 @@
             <button type="submit">Add Book</button>
         </form> 
     </div>
+    <BookList />
 </template>
 
 <script>
 import { ref } from 'vue';
 import db from '../firebase/init.js';
-import { collection, addDoc } from 'firebase/firestore';
+import {
+  collection,
+  addDoc,
+} from 'firebase/firestore'
 
 import BookList from '../components/BookList.vue';
 
