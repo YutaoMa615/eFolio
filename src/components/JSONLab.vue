@@ -180,7 +180,7 @@ const toggleMessage = () => {
 <style scoped>
 .json-lab {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  max-width: 80vw;
+  max-width: 120vw;
   margin: 0 auto;
   padding: 20px;
   background-color: #f4f4f4;
