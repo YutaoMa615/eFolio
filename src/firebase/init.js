@@ -23,10 +23,10 @@ const firebaseApp = initializeApp(firebaseConfig)
 const auth = getAuth(firebaseApp)
 const db = getFirestore()
 
-if (import.meta.env.DEV) {
-  connectAuthEmulator(auth, "http://127.0.0.1:9099")
-  connectFirestoreEmulator(db, '127.0.0.1', 8080)
-}
+// if (import.meta.env.DEV) {
+//   connectAuthEmulator(auth, "http://127.0.0.1:9099")
+//   connectFirestoreEmulator(db, '127.0.0.1', 8080)
+// }
 
 export { firebaseApp, auth }
 
