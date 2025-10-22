@@ -55,7 +55,7 @@ const apikey = "9d958e0a660401dbb68d4b32c183867d";
       },
       iconUrl() {
         return this.weatherData
-          ? `http://api.openweathermap.org/img/w/${this.weatherData.weather[0].icon}.png`
+          ? `https://api.openweathermap.org/img/w/${this.weatherData.weather[0].icon}.png`
           : null;
       },
     },
@@ -64,14 +64,14 @@ const apikey = "9d958e0a660401dbb68d4b32c183867d";
     },
     methods: {
       async fetchCurrentLocationWeather() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(async (position) => {
-            const { latitude, longitude } = position.coords;
-            const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apikey}&units=metric`;
-            await this.fetchWeatherData(url);
-          });
-        }
-      },
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(async (position) => {
+              const { latitude, longitude } = position.coords;
+              const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apikey}&units=metric`;
+              await this.fetchWeatherData(url);
+            });
+          }
+        },
       async fetchWeatherData(url) {
         try {
           const response = await axios.get(url);
